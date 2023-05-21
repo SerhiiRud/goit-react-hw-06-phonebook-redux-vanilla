@@ -10,7 +10,8 @@ const contactsArray = [
 let contactsіInitialState;
 const savedContacts = localStorage.getItem('contacts');
 const parsedContacts = JSON.parse(savedContacts);
-if (parsedContacts.length > 0) {
+
+if (parsedContacts) {
   contactsіInitialState = parsedContacts;
 } else {
   contactsіInitialState = contactsArray;

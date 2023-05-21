@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { Field, FormField } from './Filter.styled';
@@ -22,7 +21,3 @@ export const Filter = () => {
     </Formik>
   );
 };
-
-// Filter.propTypes = {
-//   onSearch: PropTypes.func.isRequired,
-// };

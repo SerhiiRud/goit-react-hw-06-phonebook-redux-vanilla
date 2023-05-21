@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
@@ -50,7 +49,10 @@ export const ContactForm = () => {
       return alert(`${values.name} is already in contacts`);
     }
     dispatch(addContact({ ...values, id: nanoid() }));
+
     actions.resetForm();
+    console.log(contacts.length);
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   };
 
   return (
@@ -77,7 +79,3 @@ export const ContactForm = () => {
     </>
   );
 };
-
-// ContactForm.propTypes = {
-//   onAddContact: PropTypes.func.isRequired,
-// };

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import { getContacts, getFilter } from 'redux/selectors';
 import { removeContact } from 'redux/actions';
 import { Contacts, ContactItem, FormButton } from './Contacts.styled';
@@ -16,8 +15,14 @@ export const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
 
+  const storageHandler = () => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  };
+
   const onDelete = id => {
     dispatch(removeContact(id));
+    console.log(contacts);
+    storageHandler();
   };
 
   const visibleContacts = getVisibleContacts(contacts, filter);
@@ -35,14 +40,3 @@ export const ContactList = () => {
     </Contacts>
   );
 };
-
-// ContactList.propTypes = {
-//   contactsList: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   onDelete: PropTypes.func.isRequired,
-// };
